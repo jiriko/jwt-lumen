@@ -26,12 +26,10 @@ class EnrollmentsController extends Controller
             'subject_id' => 'required'
         ]);
 
-        $enrollment = Enrollment::create(
-            [
-                'student_id' => request('student_id'),
-                'subject_id' => request('subject_id')
-            ]
-        );
+        $enrollment = Enrollment::create([
+            'student_id' => request('student_id'),
+            'subject_id' => request('subject_id')
+        ]);
 
         return response(['data' => $enrollment]);
     }

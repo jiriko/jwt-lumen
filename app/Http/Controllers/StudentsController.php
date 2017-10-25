@@ -41,12 +41,10 @@ class StudentsController extends Controller
             'email' => 'required|email|unique:students'
         ]);
 
-        $student = Student::create(
-            [
-                'name' => request('name'),
-                'email' => request('email')
-            ]
-        );
+        $student = Student::create([
+            'name' => request('name'),
+            'email' => request('email')
+        ]);
 
         return new StudentResource($student);
     }

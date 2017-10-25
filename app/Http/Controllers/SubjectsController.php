@@ -39,11 +39,9 @@ class SubjectsController extends Controller
             'name' => 'required|unique:subjects'
         ]);
 
-        $subject = Subject::create(
-            [
-                'name' => request('name')
-            ]
-        );
+        $subject = Subject::create([
+            'name' => request('name')
+        ]);
 
         return new SubjectResource($subject);
     }
