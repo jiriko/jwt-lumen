@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Enrollment;
 use Illuminate\Http\Request;
 
+/**
+ * @Resource("Enrollments")
+ */
 class EnrollmentsController extends Controller
 {
 

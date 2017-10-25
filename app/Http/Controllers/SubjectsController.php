@@ -6,6 +6,9 @@ use App\Subject;
 use App\Filters\SubjectFilters;
 use App\Http\Resources\Subject as SubjectResource;
 
+/**
+ * @Resource("Subjects")
+ */
 class SubjectsController extends Controller
 {
     /**
