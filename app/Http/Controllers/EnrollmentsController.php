@@ -13,14 +13,14 @@ class EnrollmentsController extends Controller
      *
      * Creates a new subject enrollment for a student.
      *
-     * @Request({"student_id": 1, "student_id": 2})
+     * @Request({"student_id": 1, "subject_id": 2})
      * @POST("/enrollments")
      */
     public function store()
     {
         $this->validate(request(), [
             'student_id' => 'required',
-            'student_id' => 'required'
+            'subject_id' => 'required'
         ]);
 
         $enrollment = Enrollment::create(
