@@ -76,7 +76,7 @@ class ValidationTest extends TestCase
         $this->withExceptionHandling();
         $user = create(User::class);
 
-        //request without the field key
+        //request without the table key
         $status = $this->json(
             'GET',
             'api/validation?type=email,unique&q=' . $user->email . '&id=' . $user->id . '&field=email',
