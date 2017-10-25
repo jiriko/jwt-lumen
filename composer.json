@@ -10,7 +10,8 @@
         "vlucas/phpdotenv": "~2.2",
         "tymon/jwt-auth": "dev-develop",
         "vluzrmos/tinker": "dev-master",
-        "smskin/lumen-make": "^1.0"
+        "smskin/lumen-make": "^1.0",
+        "dingo/api": "2.0.0-alpha1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -37,8 +38,6 @@
             "php -r \"copy('.env.example', '.env');\""
         ]
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
         "optimize-autoloader": true
     }

@@ -13,6 +13,8 @@ class LoginTest extends TestCase
     /** @test */
     public function a_login_requires_correct_and_valid_credentials()
     {
+        $this->withExceptionHandling();
+
         $correctPassword = 'validPassword';
         $correctEmail = 'correct@email.com';
         $user = create('App\User', [
@@ -20,7 +22,7 @@ class LoginTest extends TestCase
             'email' => $correctEmail
         ]);
 
-        $this->json('POST', '/users/login', [
+        $this->json('POST', '/api/users/login', [
             'email' => 'invalidemail',
             'password' => ''
         ])->seeJson([
@@ -28,19 +30,19 @@ class LoginTest extends TestCase
             'password' => ['The password field is required.']
         ]);
 
-        $response = $this->call('POST', '/users/login', [
+        $response = $this->call('POST', '/api/users/login', [
             'email' => $correctEmail,
             'password' => 'incorrectPassword'
         ]);
 
-        $this->assertEquals(401, $response->status());
+        $this->assertEquals(422, $response->status());
 
-        $response = $this->call('POST', '/users/login', [
+        $response = $this->call('POST', '/api/users/login', [
             'email' => 'incorrectEmail@gmail.com',
             'password' => $correctPassword
         ]);
 
-        $this->assertEquals(401, $response->status());
+        $this->assertEquals(422, $response->status());
     }
 
 
@@ -49,7 +51,7 @@ class LoginTest extends TestCase
     {
         $user = create('App\User', ['password' => app('hash')->make('password123')]);
 
-        $response = $this->call('POST',  '/users/login', [
+        $response = $this->call('POST',  '/api/users/login', [
             'email' => $user->email,
             'password' => 'password123'
         ]);
@@ -65,7 +67,7 @@ class LoginTest extends TestCase
         $this->signIn();
         $token = JWTAuth::fromUser(auth()->user());
 
-        $response = $this->json('POST', '/users/refresh-token', [], ['Authorization' => 'Bearer ' . $token . '']);
+        $response = $this->json('POST', '/api/users/refresh-token', [], ['Authorization' => 'Bearer ' . $token . '']);
 
         $this->assertTokenInBodyAndHeader($response->response);
 

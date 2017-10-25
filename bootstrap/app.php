@@ -97,6 +97,8 @@ if (env('APP_ENV') != 'production' || env('APP_ENV') == 'local') {
 }
 $app->register(SMSkin\LumenMake\Providers\FormRequestServiceProvider::class);
 
+$app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -109,10 +111,12 @@ $app->register(SMSkin\LumenMake\Providers\FormRequestServiceProvider::class);
 |
 */
 
-$app->router->group([
+require __DIR__ . '/../routes/web.php';
+
+/*$app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
     require __DIR__ . '/../routes/web.php';
-});
+});*/
 
 return $app;
